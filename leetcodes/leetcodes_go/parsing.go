@@ -32,25 +32,11 @@ func parseIntegerArray(entry string) ([]int, error) {
 	return parseGenericArray(entry, ",", "[]", strconv.Atoi)
 }
 
-// func sayType[T any](entry T, outputType Type) {
-// 	typeKind := reflect.TypeOf(entry).Kind()
-// 	fmt.Println(typeKind)
-// 	fmt.Println(outputType)
+func parseListNodeList(entry string) (*ListNode, error) {
+	array, err := parseIntegerArray(entry)
+	if err != nil {
+		return nil, err
+	}
 
-// 	switch typeKind {
-// 	case reflect.Int:
-// 		fmt.Println("oi")
-// 	case reflect.String:
-// 		fmt.Println("eai")
-// 	case reflect.Slice:
-// 		fmt.Println("tchaus")
-// 	default:
-// 		fmt.Println("nao foi")
-// 	}
-// }
-
-// func main() {
-// 	sayType("oi", int)
-// 	sayType(123, string)
-// 	sayType([]int{3, 4}, map[int]int)
-// }
+	return buildListNode(array), nil
+}
