@@ -1,4 +1,4 @@
-package main
+package leetcodesgo
 
 import (
 	"strings"
@@ -23,17 +23,10 @@ func longestPalindrome(s string) string {
 		search := s[i:]
 		for j := strings.LastIndexByte(search, byte(char)); j < len(search) && j != -1; j = strings.LastIndexByte(search[:j], byte(char)) {
 			substr := search[:j+1]
-			println(substr)
 			if len(substr) > len(currentLongest) && isPalindrome(substr) {
 				currentLongest = substr
 			}
 		}
 	}
 	return currentLongest
-}
-
-func main() {
-	found := longestPalindrome("oi eu sou o abba goku")
-	println("found: ", found)
-
 }

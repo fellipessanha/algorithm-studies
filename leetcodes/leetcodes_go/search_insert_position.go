@@ -1,4 +1,4 @@
-package main
+package leetcodesgo
 
 func searchInsert(nums []int, target int) int {
 	if target < nums[0] {
@@ -20,17 +20,4 @@ func searchInsert(nums []int, target int) int {
 		}
 	}
 	return -1
-}
-
-func main() {
-	candidate := []int{1, 3, 5, 6}
-	for _, v := range []int{0, 5, 2, 8} {
-		output := searchInsert(candidate, v)
-		println(output)
-	}
-
-	println(searchInsert([]int{1}, 2))
-	println(searchInsert([]int{1}, 1))
-	println(searchInsert([]int{1}, 0))
-
 }
