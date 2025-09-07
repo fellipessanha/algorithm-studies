@@ -16,11 +16,3 @@ func lengthOfLongestSubstring(s string) int {
 	}
 	return maximumSize
 }
-
-// func main() {
-// 	evaluations := []string{"abcabcbb", "pwwkew", "pwpwkew", "au", "abba"}
-// 	for _, ss := range evaluations {
-// 		length := lengthOfLongestSubstring(ss)
-// 		fmt.Println(ss, length)
-// 	}
-// }
