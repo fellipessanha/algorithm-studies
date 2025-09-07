@@ -27,6 +27,22 @@ func (node *ListNode) String() string {
 	return "[" + strings.Trim(asString, " ") + "]"
 }
 
+func areEqual(n1 *ListNode, n2 *ListNode) bool {
+	println("in areEqual")
+	for n1 != nil && n2 != nil {
+		if n1.Val != n2.Val {
+			return false
+		}
+		n1 = n1.Next
+		n2 = n2.Next
+	}
+	if n1 == nil && n2 == nil {
+		println("one ended before the other")
+		return true
+	}
+	return false
+}
+
 func buildListNode(values []int) (root *ListNode) {
 	if len(values) == 0 {
 		return nil

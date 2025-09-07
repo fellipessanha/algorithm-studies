@@ -31,5 +31,18 @@ func TestListNodeAsString(t *testing.T) {
 	if arrayString != nodesString {
 		t.Errorf("array's output is different from generator Node. expected %s, got %s", arrayString, nodesString)
 	}
+}
 
+func TestAreEqual(t *testing.T) {
+	node1 := buildListNode([]int{1, 2, 3})
+	node2 := buildListNode([]int{1, 2, 3})
+	node3 := buildListNode([]int{1, 5})
+
+	if !areEqual(node1, node2) {
+		t.Errorf("Equal Node Lists(%s and %s) comparison returned `false`", node1, node2)
+	}
+
+	if areEqual(node1, node3) {
+		t.Errorf("Equal Node Lists(%s and %s) comparison returned `false`", node1, node3)
+	}
 }
