@@ -24,12 +24,21 @@ func parseGenericArray[T any](
 	return parsed_entries, nil
 }
 
+func parseStringArray(entry string) ([]string, error) {
+	return parseGenericArray(entry, ",", "[]", func(entry string) (string, error) { return entry, nil })
+}
+
 func parseIntegerArrayArray(entry string) ([][]int, error) {
 	return parseGenericArray(entry, "],[", "[]", parseIntegerArray)
 }
 
 func parseIntegerArray(entry string) ([]int, error) {
 	return parseGenericArray(entry, ",", "[]", strconv.Atoi)
+}
+
+func parseBinaryNodeList(entry string) (*TreeNode, error) {
+	values, _ := parseStringArray(entry)
+	return buildBinaryTreeFromStringArray(values, 0)
 }
 
 func parseListNodeList(entry string) (*ListNode, error) {
