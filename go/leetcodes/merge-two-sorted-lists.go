@@ -1,6 +1,6 @@
 package leetcodesgo
 
-func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
+func mergeTwoSortedLists(list1 *ListNode, list2 *ListNode) *ListNode {
 	head := &ListNode{0, nil}
 	node := head
 	for list1 != nil && list2 != nil {
