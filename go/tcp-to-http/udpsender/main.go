@@ -6,9 +6,19 @@ import (
 	"log"
 	"net"
 	"os"
+	"tcp-to-http/internal"
 )
 
 func main() {
+	connection := getUDPConnection()
+
+	buffer := bufio.NewReader(os.Stdin)
+	for {
+		internal.ServerInterface(buffer, connection.Write)
+	}
+}
+
+func getUDPConnection() *net.UDPConn {
 	address, addressErr := net.ResolveUDPAddr("udp", "localhost:42069")
 	if addressErr != nil {
 		log.Fatalf("erro resolvendo endereço: %s", addressErr)
@@ -22,21 +32,5 @@ func main() {
 		log.Printf("conexão pronta: %v\n", connection)
 		defer connection.Close()
 	}
-
-	buffer := bufio.NewReader(os.Stdin)
-	for {
-		fmt.Print("> ")
-		input, inputErr := buffer.ReadString('\n')
-
-		if inputErr != nil {
-			log.Fatalf("input error: %s", inputErr)
-		}
-		writeSize, writeErr := connection.Write([]byte(input))
-		if writeErr != nil {
-			log.Fatalf("write error: %s", writeErr)
-		} else {
-			fmt.Printf("successfully wrote %d bytes to udp\n", writeSize)
-		}
-
-	}
+	return connection
 }
