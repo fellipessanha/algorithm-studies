@@ -5,6 +5,9 @@ import (
 	"strings"
 )
 
+// Element is an interface that can represent either a string or an integer
+type Element interface{ string | int}
+
 func parseGenericArray[T any](
 	entry string,
 	splittings string,
@@ -24,8 +27,16 @@ func parseGenericArray[T any](
 	return parsed_entries, nil
 }
 
+func parseStringArrayArray(entry string) ([][]string, error) {
+	return parseGenericArray(entry, "],[", "[]", parseStringArray)
+}
+
+func parseStringArrayArrayArray(entry string) ([][][]string, error) {
+	return parseGenericArray(entry, "]],[[", "[]", parseStringArrayArray)
+}
+
 func parseStringArray(entry string) ([]string, error) {
-	return parseGenericArray(entry, ",", "[]", func(entry string) (string, error) { return entry, nil })
+	return parseGenericArray(entry, ",", "\"[]", func(entry string) (string, error) { return entry, nil })
 }
 
 func parseIntegerArrayArray(entry string) ([][]int, error) {
