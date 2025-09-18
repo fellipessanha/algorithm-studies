@@ -33,3 +33,17 @@ func (heap *Heap[T]) orderHeap() {
 		index = parentIndex(index)
 	}
 }
+
+func (heap *Heap[T]) Pop() (T, error) {
+	if heap.Empty() {
+		var zero T
+		return zero, ErrEmptyHeap
+	}
+	top := heap.data[0]
+	lastIndex := len(heap.data) - 1
+	heap.data[0] = heap.data[lastIndex]
+	heap.data = heap.data[:lastIndex]
+	heap.orderHeap()
+
+	return top, nil
+}

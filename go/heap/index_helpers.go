@@ -11,3 +11,7 @@ func leftIndex(i int) int {
 func rightIndex(i int) int {
 	return (i + 1) * 2
 }
+
+func childrenIndexes(i int) (int, int) {
+	return leftIndex(i), rightIndex(i)
+}

@@ -39,4 +39,16 @@ func TestHeapMethods(t *testing.T) {
 
 	// Test pushing another element and checking the top again
 	minHeap.Push(0)
+
+	// Test popping elements from the heap
+	expectedOrder := []int{0, 1, 3, 5, 8}
+	for _, expected := range expectedOrder {
+		popped, err := minHeap.Pop()
+		if err != nil {
+			t.Errorf("Unexpected error when popping element: %v", err)
+		}
+		if popped != expected {
+			t.Errorf("Expected popped element to be %d, got %d", expected, popped)
+		}
+	}
 }
