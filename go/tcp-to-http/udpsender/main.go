@@ -1,12 +1,12 @@
 package main
 
 import (
+	"algorithms/tcp-to-http/internal"
 	"bufio"
 	"fmt"
 	"log"
 	"net"
 	"os"
-	"tcp-to-http/internal"
 )
 
 func main() {
