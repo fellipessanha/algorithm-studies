@@ -3,6 +3,7 @@ package leetcodesgo
 import (
 	"strconv"
 	"strings"
+	"unicode"
 )
 
 type Spreadsheet struct {
@@ -22,15 +23,14 @@ func (this *Spreadsheet) ResetCell(cell string) {
 }
 
 func (this *Spreadsheet) parseFormulaCell(input string) int {
-	output, err := strconv.Atoi(input)
-	if err != nil {
-		cell := this.data[input]
-		return cell
+	if unicode.IsLetter(rune(input[0])) {
+		return this.data[input]
 	}
-	return output
+	value, _ := strconv.Atoi(input)
+	return value
 }
 
 func (this *Spreadsheet) GetValue(formula string) int {
-	values := strings.Split(formula[1:], "+")
-	return this.parseFormulaCell(values[0]) + this.parseFormulaCell(values[1])
+	plusIndex := strings.IndexByte(formula, '+')
+	return this.parseFormulaCell(formula[1:plusIndex]) + this.parseFormulaCell(formula[plusIndex+1:])
 }

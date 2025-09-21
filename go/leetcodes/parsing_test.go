@@ -22,14 +22,14 @@ func TestParseBinaryNodesList(t *testing.T) {
 	}
 }
 
-func TestParseMixedArrayArray(t *testing.T){
+func TestParseMixedArrayArray(t *testing.T) {
 	input := "[[\"kimchi\",\"miso\",\"sushi\",\"moussaka\",\"ramen\",\"bulgogi\"],[\"korean\",\"japanese\",\"japanese\",\"greek\",\"japanese\",\"korean\"],[9,12,8,15,14,7]]"
 	output, err := parseStringArrayArray(input)
 	if err != nil {
 		t.Errorf("Parsing error!")
 	}
 
-	if len(output) != 3{
+	if len(output) != 3 {
 		t.Errorf("Parsing error! wrong number of arrays")
 	}
 
