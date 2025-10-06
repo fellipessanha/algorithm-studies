@@ -18,10 +18,14 @@ func TestHeapMethods(t *testing.T) {
 	if err == nil {
 		t.Error("Expected error when accessing top of empty heap")
 	}
-	pushDict := map[int]int{5: 5, 3: 5, 8: 8, 1: 8}
+	pushOrder := []struct {
+		insert   int
+		expected int
+	}{{5, 5}, {3, 5}, {8, 8}, {1, 8}}
 
 	// Test pushing elements into the heap
-	for cur, max := range pushDict {
+	for _, pushOrder := range pushOrder {
+		cur, max := pushOrder.insert, pushOrder.expected
 		maxHeap.Push(cur)
 		currentTop, pushErr := maxHeap.Top()
 		if pushErr != nil {
