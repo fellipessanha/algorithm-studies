@@ -1,0 +1,13 @@
+# Docker
+coverage/
+*.out
+.dockerignore
+
+# Go
+*.exe
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+go.work
