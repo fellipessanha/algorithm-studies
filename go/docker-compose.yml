@@ -1,0 +1,27 @@
+services:
+  # Test runner service
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    command: go test -v -cover ./...
+    environment:
+      - CGO_ENABLED=0
+      - GOOS=linux
+      - GOARCH=amd64
+
+  # Test with coverage report
+  test-coverage:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+      - ./coverage:/coverage
+    command: >
+      sh -c "go test -v -coverprofile=/coverage/coverage.out ./... &&
+             go tool cover -html=/coverage/coverage.out -o /coverage/coverage.html"
+    environment:
+      - CGO_ENABLED=0
